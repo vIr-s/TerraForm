@@ -4,3 +4,5 @@
 .project
 .idea/
 src/main/main.iml
+target/
+embeddedTomcatSample.iml

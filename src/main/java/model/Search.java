@@ -1,6 +1,9 @@
 package model;
 
 import api.YelpApi;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.JSONSerializer;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -31,13 +34,22 @@ public class Search {
     }
 
 
-    public String businessSearch(String term, double latitude, double longitude) {
+    public List<Business> businessSearch(String term, double latitude, double longitude) {
         OAuthRequest request = new OAuthRequest(Verb.GET, "http://api.yelp.com/v2/search");
         request.addQuerystringParameter("term", term);
         request.addQuerystringParameter("ll", latitude + "," + longitude);
         this.service.signRequest(this.accessToken, request);
         Response response = request.send();
-        return response.getBody();
+        JSONObject json = (JSONObject) JSONSerializer.toJSON(response.getBody());
+        JSONArray businessesJson = (JSONArray) json.get("businesses");
+        List<Business> businesses = new ArrayList<Business>();
+
+        for(Object businessObject:businessesJson){
+            JSONObject businessJSON = (JSONObject) businessObject;
+            Business business = new Business(businessJSON.getString("name"), businessJSON.getString("image_url"));
+            businesses.add(business);
+        }
+        return businesses;
     }
 
     public List<String> userReviewSearch() throws MalformedURLException, DocumentException {

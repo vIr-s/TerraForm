@@ -1,9 +1,11 @@
 package servlet;
 
+import model.Business;
 import model.Search;
 import org.dom4j.DocumentException;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -23,13 +25,13 @@ public class SuggestionsServlet extends HttpServlet {
             throws ServletException, IOException {
         ServletOutputStream out = resp.getOutputStream();
         Search search = new Search();
-        search.businessSearch("", 0, 0);
+        List<Business> businesses = search.businessSearch("burritos", 30.361471, -87.164326);
         try {
             search.userReviewSearch();
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-
+        out.write("hello heroku".getBytes());
         out.flush();
         out.close();
     }

@@ -2,6 +2,7 @@ package model;
 
 import api.YelpApi;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 import org.dom4j.Document;
@@ -23,10 +24,10 @@ import java.util.List;
 public class Search {
     OAuthService service;
     Token accessToken;
-    String consumerKey = "";
-    String consumerSecret = "";
-    String token = "";
-    String tokenSecret = "";
+    String consumerKey = "mcLZtONBvmsM77PNiw94RQ";
+    String consumerSecret = "rmL7-sStT4Fz5k3QMXyUXErCNdg";
+    String token = "3NYqSbHFSutjilq4xC71f9AXVn_jNpms";
+    String tokenSecret = "h_Deb-JvIjxXR0b4_DC_wrFb1O4";
 
     public Search() {
         this.service = new ServiceBuilder().provider(YelpApi.class).apiKey(consumerKey).apiSecret(consumerSecret).build();
@@ -46,7 +47,14 @@ public class Search {
 
         for(Object businessObject:businessesJson){
             JSONObject businessJSON = (JSONObject) businessObject;
-            Business business = new Business(businessJSON.getString("name"), businessJSON.getString("image_url"));
+            String imageUrl;
+            try{
+                imageUrl = businessJSON.getString("image_url");
+            }
+            catch(JSONException e){
+                imageUrl = "blah";
+            }
+            Business business = new Business(businessJSON.getString("name"), imageUrl);
             businesses.add(business);
         }
         return businesses;

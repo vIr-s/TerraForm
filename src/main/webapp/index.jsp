@@ -17,40 +17,60 @@ a.fbbtn:HOVER {
 <body>
 	<div id="fb-root"></div>
 	<script>
-		window.fbAsyncInit = function() {
+		var xmlhttp;
+		var envProp = {};
 
-			FB.Event
-					.subscribe(
-							'auth.statusChange',
-							function(response) {
-								if (response.status === 'connected') {
-									location
-											.replace('https://www.facebook.com/dialog/oauth?client_id=263887647069917&redirect_uri=http://terraform.herokuapp.com/login&scope=user_likes');
-								}
-							});
+		if (window.XMLHttpRequest) {
+			// IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp = new XMLHttpRequest();
 
-			FB.init({
-				appId : '263887647069917', // App ID
-				channelUrl : '//terraform.herokuapp.com/channel.html', // Channel File
-				status : true, // check login status
-				cookie : true, // enable cookies to allow the server to access the session
-				xfbml : true
-			});
-		};
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 
-		// Load the SDK asynchronously
-		(function(d) {
-			var js, id = 'facebook-jssdk', ref = d
-					.getElementsByTagName('script')[0];
-			if (d.getElementById(id)) {
-				return;
+					var o = eval('(' + xmlhttp.responseText + ')');
+					envProp.FB_LOGIN_URL = o.FB_LOGIN_URL;
+					envProp.FB_CHANNEL_URL = o.FB_CHANNEL_URL;
+
+					document.getElementById("IDfbBtn").href = o.FB_LOGIN_URL;
+
+					window.fbAsyncInit = function() {
+
+						FB.Event.subscribe('auth.statusChange', function(
+								response) {
+							if (response.status === 'connected') {
+								location.replace(envProp.FB_LOGIN_URL);
+							}
+						});
+
+						FB.init({
+							appId : '263887647069917', // App ID
+							// channelUrl : '//terraform.herokuapp.com/channel.html', // Channel File
+							channelUrl : envProp.FB_CHANNEL_URL, // Channel File
+							status : true, // check login status
+							cookie : true, // enable cookies to allow the server to access the session
+							xfbml : true
+						});
+					};
+
+					// Load the SDK asynchronously
+					(function(d) {
+						var js, id = 'facebook-jssdk', ref = d
+								.getElementsByTagName('script')[0];
+						if (d.getElementById(id)) {
+							return;
+						}
+						js = d.createElement('script');
+						js.id = id;
+						js.async = true;
+						js.src = "//connect.facebook.net/en_US/all.js";
+						ref.parentNode.insertBefore(js, ref);
+					}(document));
+				}
 			}
-			js = d.createElement('script');
-			js.id = id;
-			js.async = true;
-			js.src = "//connect.facebook.net/en_US/all.js";
-			ref.parentNode.insertBefore(js, ref);
-		}(document));
+
+			xmlhttp.open("GET", "prop", true);
+			xmlhttp.send();
+		}
 	</script>
 
 	<!--
@@ -63,9 +83,7 @@ a.fbbtn:HOVER {
 	<!-- <fb:login-button show-faces="false" max-rows="1" autologoutlink="true"
 		size="large" onlogin="foo()"></fb:login-button> -->
 
-	<a
-		href="https://www.facebook.com/dialog/oauth?client_id=263887647069917&redirect_uri=http://terraform.herokuapp.com/login&scope=user_likes"
-		class="fbbtn"></a>
+	<a id="IDfbBtn" class="fbbtn"></a>
 
 </body>
 </html>

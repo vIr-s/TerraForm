@@ -1,9 +1,8 @@
 package servlet;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -21,16 +20,32 @@ public class PropServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		String msg = "";
+		String msg;
 
 		ServletOutputStream out = resp.getOutputStream();
 
 		try {
 			Properties prop = new Properties();
-			prop.load(getClass().getResourceAsStream("/config/test.prop"));
-			msg += prop.toString();
+			prop.load(getClass().getResourceAsStream("/config/env.properties"));
+
+			StringBuilder res = new StringBuilder();
+			Set<Object> keySet = prop.keySet();
+			for (Object key : keySet) {
+				if (res.length() > 0) {
+					res.append(",");
+				}
+				res.append("'");
+				res.append(key);
+				res.append("'");
+				res.append(":");
+				res.append("'");
+				res.append(prop.getProperty((String) key));
+				res.append("'");
+			}
+
+			msg = "{" + res.toString() + "}";
 		} catch (Exception e) {
-			msg += "null";
+			msg = "{}";
 			e.printStackTrace();
 		}
 

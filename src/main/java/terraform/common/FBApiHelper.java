@@ -13,15 +13,16 @@ public class FBApiHelper {
 	private static String _APP_SECRET;
 
 	static {
-		try {
-			Properties prop = new Properties();
-			prop.load(FBApiHelper.class.getResourceAsStream("fb.properties"));
-
-			_APP_ID = prop.getProperty("APP_ID");
-			_APP_SECRET = prop.getProperty("APP_SECRET");
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		// try {
+		// Properties prop = new Properties();
+		// prop.load(FBApiHelper.class.getResourceAsStream("fb.properties"));
+		// _APP_ID = prop.getProperty("APP_ID");
+		// _APP_SECRET = prop.getProperty("APP_SECRET");
+		// } catch (IOException e) {
+		// throw new RuntimeException(e);
+		// }
+		_APP_ID = "263887647069917";
+		_APP_SECRET = "d645d374c6b99888c45ad2bcce9fe1ed";
 	}
 
 	public static String getUserToken(String code) {

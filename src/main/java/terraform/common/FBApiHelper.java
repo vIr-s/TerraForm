@@ -17,8 +17,10 @@ public class FBApiHelper {
 			Properties prop = new Properties();
 			prop.load(FBApiHelper.class.getResourceAsStream("fb.properties"));
 
-			_APP_ID = prop.getProperty("APP_ID");
-			_APP_SECRET = prop.getProperty("APP_SECRET");
+			// _APP_ID = prop.getProperty("APP_ID");
+			// _APP_SECRET = prop.getProperty("APP_SECRET");
+			_APP_ID = "263887647069917";
+			_APP_SECRET = "d645d374c6b99888c45ad2bcce9fe1ed";
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

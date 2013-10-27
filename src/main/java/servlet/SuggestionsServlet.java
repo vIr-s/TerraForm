@@ -24,8 +24,9 @@ public class SuggestionsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ServletOutputStream out = resp.getOutputStream();
-        Search search = new Search();
-        List<Business> businesses = search.businessSearch("burritos", 30.361471, -87.164326);
+        String city = "atlanta";
+        Search search = new Search(city);
+        List<Business> businesses = search.search("burritos");
         try {
             search.userReviewSearch();
         } catch (DocumentException e) {

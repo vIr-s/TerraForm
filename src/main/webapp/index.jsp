@@ -25,13 +25,13 @@ a.fbbtn:HOVER {
 							function(response) {
 								if (response.status === 'connected') {
 									location
-											.replace('https://www.facebook.com/dialog/oauth?client_id=263887647069917&redirect_uri=http://terraform.heroku.com/login&scope=user_likes');
+											.replace('https://www.facebook.com/dialog/oauth?client_id=263887647069917&redirect_uri=http://terraform.herokuapp.com/login&scope=user_likes');
 								}
 							});
 
 			FB.init({
 				appId : '263887647069917', // App ID
-				channelUrl : '//terraform.heroku.com/channel.html', // Channel File
+				channelUrl : '//terraform.herokuapp.com/channel.html', // Channel File
 				status : true, // check login status
 				cookie : true, // enable cookies to allow the server to access the session
 				xfbml : true
@@ -64,7 +64,7 @@ a.fbbtn:HOVER {
 		size="large" onlogin="foo()"></fb:login-button> -->
 
 	<a
-		href="https://www.facebook.com/dialog/oauth?client_id=263887647069917&redirect_uri=http://terraform.heroku.com/login&scope=user_likes"
+		href="https://www.facebook.com/dialog/oauth?client_id=263887647069917&redirect_uri=http://terraform.herokuapp.com/login&scope=user_likes"
 		class="fbbtn"></a>
 
 </body>

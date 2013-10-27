@@ -4,3 +4,9 @@
 .project
 /build
 /target
+.idea/
+src/main/main.iml
+target/
+embeddedTomcatSample.iml
+out/
+.classpath

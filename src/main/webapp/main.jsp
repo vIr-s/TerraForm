@@ -35,6 +35,12 @@
 								location.replace('/');
 							}
 						});
+						
+						FB.Event.subscribe('auth.logout', function(
+								response) {
+								console.log(response);
+								location.replace("/");
+						});
 					};
 
 					// Load the SDK asynchronously

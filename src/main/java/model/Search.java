@@ -68,10 +68,13 @@ public class Search {
         URL url = new URL("http://www.yelp.com/syndicate/user/" + userId + "/rss.xml");
         Document document = reader.read(url);
         List<Element> reviews = document.selectNodes("/rss/channel/item");
-        List<String> review_text = new ArrayList<String>();
+        List<String> businesses = new ArrayList<String>();
         for (Element review : reviews){
-            review_text.add(review.selectSingleNode("description").getText());
+            String title = review.selectSingleNode("title").getText();
+            int index = title.indexOf("(");
+            int rating = Integer.parseInt(title.substring(index+1, index+2));
+            businesses.add(title.substring(0, index-1));
         }
-        return review_text;
+        return null;
     }
 }

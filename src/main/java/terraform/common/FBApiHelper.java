@@ -23,7 +23,7 @@ public class FBApiHelper {
 		// }
 		_APP_ID = "263887647069917";
 		_APP_SECRET = "d645d374c6b99888c45ad2bcce9fe1ed";
-	}
+}
 
 	public static String getUserToken(String code) {
 		String token = "null";

@@ -9,7 +9,7 @@
 
 			FB.init({
 				appId : '263887647069917', // App ID
-				channelUrl : '//localhost:8080/channel.html', // Channel File
+				channelUrl : '//terraform.herokuapp.com/channel.html', // Channel File
 				cookie : true, // enable cookies to allow the server to access the session
 				status: false,
 				xfbml : true

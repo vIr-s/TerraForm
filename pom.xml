@@ -65,6 +65,9 @@
 				<version>1.1.1</version>
 				<configuration>
 					<assembleDirectory>target</assembleDirectory>
+					<configurationSourceDirectory>src/main/resources/config</configurationSourceDirectory>
+					<configurationDirectory>config</configurationDirectory>
+					<copyConfigurationDirectory>true</copyConfigurationDirectory>
 					<programs>
 						<program>
 							<mainClass>launch.Main</mainClass>

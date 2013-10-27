@@ -4,25 +4,28 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Properties;
 
 import javax.net.ssl.HttpsURLConnection;
 
 public class FBApiHelper {
-	private static final String _REDIRECT_URL = "http://terraform.herokuapp.com/login";
+	private static String _REDIRECT_URL;
 	private static String _APP_ID;
 	private static String _APP_SECRET;
 
 	static {
-		// try {
-		// Properties prop = new Properties();
-		// prop.load(FBApiHelper.class.getResourceAsStream("fb.properties"));
-		// _APP_ID = prop.getProperty("APP_ID");
-		// _APP_SECRET = prop.getProperty("APP_SECRET");
-		// } catch (IOException e) {
-		// throw new RuntimeException(e);
-		// }
-		_APP_ID = "263887647069917";
-		_APP_SECRET = "d645d374c6b99888c45ad2bcce9fe1ed";
+		try {
+			Properties prop = new Properties();
+			prop.load(FBApiHelper.class.getResourceAsStream("/config/fb.properties"));
+			
+			_REDIRECT_URL = prop.getProperty("REDIRECT_URL");
+			_APP_ID = prop.getProperty("APP_ID");
+			_APP_SECRET = prop.getProperty("APP_SECRET");
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		// _APP_ID = "263887647069917";
+		// _APP_SECRET = "d645d374c6b99888c45ad2bcce9fe1ed";
 	}
 
 	public static String getUserToken(String code) {

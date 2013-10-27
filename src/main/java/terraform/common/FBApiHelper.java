@@ -4,11 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.Properties;
 
 import javax.net.ssl.HttpsURLConnection;
 
 public class FBApiHelper {
+	private static final String _REDIRECT_URL = "http://terraform.herokuapp.com/login";
 	private static String _APP_ID;
 	private static String _APP_SECRET;
 
@@ -23,16 +23,15 @@ public class FBApiHelper {
 		// }
 		_APP_ID = "263887647069917";
 		_APP_SECRET = "d645d374c6b99888c45ad2bcce9fe1ed";
-}
+	}
 
 	public static String getUserToken(String code) {
 		String token = "null";
 		try {
 			URL url = new URL(
 					"https://graph.facebook.com/oauth/access_token?client_id="
-							+ _APP_ID
-							+ "&redirect_uri=http://localhost:8080/login&client_secret="
-							+ _APP_SECRET + "&code=" + code);
+							+ _APP_ID + "&redirect_uri=" + _REDIRECT_URL
+							+ "&client_secret=" + _APP_SECRET + "&code=" + code);
 
 			HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 			String parsedToken = getToken(conn);

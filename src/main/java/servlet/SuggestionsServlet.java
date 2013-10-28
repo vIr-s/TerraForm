@@ -32,7 +32,7 @@ public class SuggestionsServlet extends HttpServlet {
         List<Business> businesses = search.search(fbSearchTerms);
         List<String> userReviewFavorites;
         try {
-             userReviewFavorites = search.userReviewSearch();
+             userReviewFavorites = search.userReviewFavorites();
              businesses.addAll(search.search(userReviewFavorites));
         } catch (DocumentException e) {
             e.printStackTrace();

@@ -102,10 +102,13 @@
 					<div class="live-tile ${tileColor}" data-mode="flip" data-initdelay="${flipDelay}" data-delay="4000">
 						<!-- adding the 'full' class to an 'img' or 'a' tag causes it to fill the entire tile -->
 						<div>
-							<a href="#"><img class="full" src="${business.picUrl}" alt="first" /></a>
+							<a href="${business.yelpUrl}" target='_blank'><img class="full" src="${business.picUrl}" alt="first" /></a>
 						</div>
 						<div>
-							<p>${business.name}</p>
+							<p>
+								<a href="${business.yelpUrl}" target='_blank'>${business.name}</a>
+							</p>
+							<img src="${business.ratingUrl}" alt="first" />
 						</div>
 					</div>
 					<c:choose>
@@ -156,30 +159,25 @@
 
 		<div data-role="content" class="ui-content ui-body-c" role="main">
 			<ul data-role="listview" data-inset="true" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Location...">
-				<li><a href="#" onclick="console.log('a')">Acura</a></li>
-				<li><a href="#">Audi</a></li>
-				<li><a href="#">BMW</a></li>
-				<li><a href="#">Cadillac</a></li>
-				<li><a href="#">Chrysler</a></li>
-				<li><a href="#">Dodge</a></li>
-				<li><a href="#">Ferrari</a></li>
-				<li><a href="#">Ford</a></li>
-				<li><a href="#">GMC</a></li>
-				<li><a href="#">Honda</a></li>
-				<li><a href="#">Hyundai</a></li>
-				<li><a href="#">Infiniti</a></li>
-				<li><a href="#">Jeep</a></li>
-				<li><a href="#">Kia</a></li>
-				<li><a href="#">Lexus</a></li>
-				<li><a href="#">Mini</a></li>
-				<li><a href="#">Nissan</a></li>
-				<li><a href="#">Porsche</a></li>
-				<li><a href="#">Subaru</a></li>
-				<li><a href="#">Toyota</a></li>
-				<li><a href="#">Volkswagen</a></li>
-				<li><a href="#">Volvo</a></li>
+				<li><a href="#" onclick="getNewSuggestions('atlanta')">Atlanta</a></li>
+				<li><a href="#" onclick="getNewSuggestions('new_york')">New York</a></li>
+				<li><a href="#" onclick="getNewSuggestions('san_francisco')">San Francisco</a></li>
+				<li><a href="#" onclick="getNewSuggestions('washington_dc')">Washington D.C.</a></li>
+				<li><a href="#" onclick="getNewSuggestions('seattle')">Seattle</a></li>
+				<li><a href="#" onclick="getNewSuggestions('austin')">Austin</a></li>
+				<li><a href="#" onclick="getNewSuggestions('new_orleans')">New Orleans</a></li>
+				<li><a href="#" onclick="getNewSuggestions('miami')">Miami</a></li>
+				<li><a href="#" onclick="getNewSuggestions('london')">London</a></li>
+				<li><a href="#" onclick="getNewSuggestions('portland')">Portland</a></li>
+				<li><a href="#" onclick="getNewSuggestions('los_angeles')">Los Angeles</a></li>
 			</ul>
 		</div>
 	</div>
+	<script>
+		function getNewSuggestions(city) {
+			document.cookie = "city" + "=" + city;
+			location.replace('/main');
+		}
+	</script>
 </body>
 </html>

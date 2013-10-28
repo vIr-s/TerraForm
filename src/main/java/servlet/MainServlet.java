@@ -27,13 +27,16 @@ public class MainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String id = null;
+        String city = null;
 
 		Cookie[] cookies = req.getCookies();
-		for (int i = 0; i < cookies.length; i++) {
-			if (cookies[i].getName().equalsIgnoreCase(CookieName.ID)) {
-				id = cookies[i].getValue();
-				break;
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equalsIgnoreCase(CookieName.ID)) {
+				id = cookie.getValue();
 			}
+            else if(cookie.getName().equalsIgnoreCase(CookieName.CITY)){
+                city = cookie.getValue();
+            }
 		}
 
 		if (id != null) {
@@ -43,8 +46,8 @@ public class MainServlet extends HttpServlet {
 
 				// TODO: What if token is expired?
 				List<String> searchTerms = FoodDigester.getInstance().getSearchTerms(userLikes);
-				req.setAttribute(RequestAttrName.SEARCH_TERM, searchTerms);
-				req.setAttribute(RequestAttrName.LOCATION, null); // TODO: Read from cookie
+				req.setAttribute(RequestAttrName.SEARCH_TERM, searchTerms); 
+				req.setAttribute(RequestAttrName.LOCATION, city);
 				req.getRequestDispatcher("/suggestions").forward(req, resp);
 				return;
 			} else {

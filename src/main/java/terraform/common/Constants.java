@@ -10,4 +10,9 @@ public interface Constants {
 			String CODE = "code";
 		}
 	}
+
+	public interface RequestAttrName {
+		String SEARCH_TERM = "searchTerm";
+		String LOCATION = "location";
+	}
 }

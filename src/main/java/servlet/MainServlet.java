@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import terraform.common.Constants.CookieName;
+import terraform.common.Constants.RequestAttrName;
 import terraform.common.FBApiHelper;
 import terraform.common.TokenStore;
 import terraform.common.fbtypes.UserLike;
@@ -22,8 +23,7 @@ public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String id = null;
 
@@ -41,12 +41,9 @@ public class MainServlet extends HttpServlet {
 				List<UserLike> userLikes = FBApiHelper.getUserLikes(token);
 
 				// TODO: What if token is expired?
-				System.out.println(FoodDigester.getInstance().getSearchTerms(
-						userLikes));
-
-// 				Final
-				
-				req.setAttribute("obj", "yep");
+				List<String> searchTerms = FoodDigester.getInstance().getSearchTerms(userLikes);
+				req.setAttribute(RequestAttrName.SEARCH_TERM, searchTerms); // TODO: Read from cookie
+				req.setAttribute(RequestAttrName.LOCATION, null); // TODO: Read from cookie
 			} else {
 				Cookie cookie = new Cookie(CookieName.ID, "");
 				cookie.setMaxAge(0);
@@ -57,7 +54,6 @@ public class MainServlet extends HttpServlet {
 			}
 		}
 
-		req.getRequestDispatcher("/main.jsp").forward(req, resp);
+		req.getRequestDispatcher("/suggestions").forward(req, resp);
 	}
-
 }

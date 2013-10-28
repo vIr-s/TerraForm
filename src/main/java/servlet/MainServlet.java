@@ -14,6 +14,7 @@ import terraform.common.Constants.CookieName;
 import terraform.common.Constants.RequestAttrName;
 import terraform.common.FBApiHelper;
 import terraform.common.TokenStore;
+import terraform.common.URLHelper;
 import terraform.common.fbtypes.UserLike;
 import terraform.core.digester.FoodDigester;
 
@@ -42,18 +43,19 @@ public class MainServlet extends HttpServlet {
 
 				// TODO: What if token is expired?
 				List<String> searchTerms = FoodDigester.getInstance().getSearchTerms(userLikes);
-				req.setAttribute(RequestAttrName.SEARCH_TERM, searchTerms); // TODO: Read from cookie
+				req.setAttribute(RequestAttrName.SEARCH_TERM, searchTerms);
 				req.setAttribute(RequestAttrName.LOCATION, null); // TODO: Read from cookie
 			} else {
 				Cookie cookie = new Cookie(CookieName.ID, "");
 				cookie.setMaxAge(0);
 				resp.addCookie(cookie);
 
-				resp.sendRedirect("/");
+				// resp.sendRedirect("/");
+				resp.sendRedirect(URLHelper.getRedirectURL(req, "/"));
 				return;
 			}
 		}
-
+		
 		req.getRequestDispatcher("/suggestions").forward(req, resp);
 	}
 }

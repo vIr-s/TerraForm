@@ -1,3 +1,4 @@
+<%@page import="terraform.common.URLHelper"%>
 <html>
 <head>
 <title>TerraForm</title>
@@ -6,7 +7,8 @@
 
 	<%
 		if (request.getAttribute("obj") == null) {
-			response.sendRedirect("/");
+			// response.sendRedirect("/");
+			response.sendRedirect(URLHelper.getRedirectURL(request, "/"));
 		}
 	%>
 

@@ -15,6 +15,7 @@ import terraform.common.Constants.CookieName;
 import terraform.common.Constants.FB.ParamName;
 import terraform.common.FBApiHelper;
 import terraform.common.TokenStore;
+import terraform.common.URLHelper;
 
 @WebServlet(name = "LoginServlet", urlPatterns = { "/login" })
 public class LoginServlet extends HttpServlet {
@@ -27,7 +28,8 @@ public class LoginServlet extends HttpServlet {
 		String code = req.getParameter(ParamName.CODE);
 		if (code == null) {
 			System.out.println("No code. Redirecting to home page.");
-			resp.sendRedirect("/");
+			// resp.sendRedirect("/");
+			resp.sendRedirect(URLHelper.getRedirectURL(req, "/"));
 			return;
 		}
 
@@ -45,9 +47,8 @@ public class LoginServlet extends HttpServlet {
 			Cookie cookie = new Cookie(CookieName.ID, id);
 			resp.addCookie(cookie);
 
-			System.out.println(req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort());
-
-			resp.sendRedirect("main");
+			// resp.sendRedirect("main");
+			resp.sendRedirect(URLHelper.getRedirectURL(req, "main"));
 		}
 	}
 }

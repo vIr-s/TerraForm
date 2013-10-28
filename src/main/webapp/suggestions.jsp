@@ -14,7 +14,7 @@
 <link href="./metrojs/MetroJs.css" type="text/css" rel="stylesheet">
 </head>
 
-<body>
+<body bgcolor="#000000">
 	<%
 		if (request.getAttribute("obj") == null) {
 			// response.sendRedirect("/");
@@ -96,11 +96,9 @@
 		</div>
 		<div data-role="content">
 			<div class="ui-grid-b">
-				    
 				<div class="ui-block-a">
 					<div>&nbsp;</div>
 				</div>
-				    
 				<div class="ui-block-b ui-responsive">
 					<div>
 						<div class="tiles red" style="text-align: center; position: relative; left: 10%;">

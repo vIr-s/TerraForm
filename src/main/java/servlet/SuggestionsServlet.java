@@ -42,10 +42,11 @@ public class SuggestionsServlet extends HttpServlet {
 		List<String> userReviewFavorites;
 		try {
 			userReviewFavorites = search.userReviewFavorites();
-			businesses.addAll(search.search(userReviewFavorites));
-		} catch (DocumentException e) {
-			e.printStackTrace();
+        }
+        catch (Exception e){
+            userReviewFavorites = Search.defaultCategories();
 		}
+        businesses.addAll(search.search(userReviewFavorites));
 
 		HttpSession session = req.getSession();
 		session.setAttribute("businesses", businesses);

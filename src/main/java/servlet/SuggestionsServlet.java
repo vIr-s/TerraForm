@@ -25,13 +25,16 @@ public class SuggestionsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        ServletOutputStream out = resp.getOutputStream();
+//        ServletOutputStream out = resp.getOutputStream();
         String city = "atlanta";
         Search search = new Search(city);
         List<String> fbSearchTerms = new ArrayList<String>();
         fbSearchTerms.add("burritos");
         fbSearchTerms.add("pizza");
         fbSearchTerms.add("pad thai");
+        fbSearchTerms.add("samosa");
+        fbSearchTerms.add("coffee");
+        fbSearchTerms.add("biryani");
         List<Business> businesses = search.search(fbSearchTerms);
 //        List<String> userReviewFavorites;
 //        try {
@@ -43,7 +46,8 @@ public class SuggestionsServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
         session.setAttribute("businesses", businesses);
-        resp.sendRedirect("/suggestions_edit.jsp");
+        getServletContext().getRequestDispatcher("/suggestions_edit.jsp").forward(req, resp);
+//        resp.sendRedirect("/suggestions_edit.jsp");
 //        out.write(businesses.get(0).getPicUrl().getBytes());
 //        out.flush();
 //        out.close();

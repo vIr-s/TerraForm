@@ -121,25 +121,36 @@
 									</div>
 								</div>
 								<c:set var="rand"><%=java.lang.Math.round(java.lang.Math.random() * 2)%></c:set>
+								<c:set var="rand2"><%=java.lang.Math.round(java.lang.Math.random() * 2)%></c:set>
 								<c:choose>
-									<c:when test="${flipDelay == 2000}">
-										<c:set var="flipDelay" value="0" />
+								<!-- 
+									<c:when test="${flipDelay >= 5500}">
+										<c:set var="flipDelay" value="1000" />
 										<c:set var="tileColor" value="" />
 									</c:when>
-									<c:when test="${rand mod 4 == 0}">
-										<c:set var="flipDelay" value="1250" />
-										<c:set var="tileColor" value="blue" />
-									</c:when>
+								-->
 									<c:when test="${rand mod 4 == 1}">
-										<c:set var="flipDelay" value="1500" />
-										<c:set var="tileColor" value="green" />
+										<c:set var="flipDelay" value="${flipDelay + (1*500)}" />
 									</c:when>
 									<c:when test="${rand mod 4 == 2}">
-										<c:set var="flipDelay" value="1750" />
-										<c:set var="tileColor" value="red" />
+										<c:set var="flipDelay" value="${flipDelay + (1*650)}" />
+									</c:when>
+									<c:when test="${rand mod 4 == 3}">
+										<c:set var="flipDelay" value="${flipDelay + (1*750)}" />
 									</c:when>
 									<c:otherwise>
-										<c:set var="flipDelay" value="2000" />
+										<c:set var="flipDelay" value="${flipDelay + (1*525)}" />
+									</c:otherwise>
+								</c:choose>
+
+								<c:choose>
+									<c:when test="${rand2 mod 3 == 0}">
+										<c:set var="tileColor" value="red" />
+									</c:when>
+									<c:when test="${rand2 mod 3 == 1}">
+										<c:set var="tileColor" value="green" />
+									</c:when>
+									<c:otherwise>
 										<c:set var="tileColor" value="blue" />
 									</c:otherwise>
 								</c:choose>

@@ -94,52 +94,79 @@
 			<fb:login-button show-faces="false" max-rows="1" autologoutlink="true" size="large" style="float: left; top: 6px; left: 5px;"></fb:login-button>
 			<span class="ui-title">TerraForm</span>
 		</div>
-		<div data-role="content" style="text-align: center;">
-			<div class="tiles red">
-				<c:set var="flipDelay" value="2000" />
-				<c:set var="tileColor" value="blue" />
-				<fmt:parseNumber var="count" value="0" />
-				<c:forEach items="${businesses}" var="business">
-					<div class="live-tile ${tileColor}" data-mode="flip" data-initdelay="${flipDelay}" data-delay="4000">
-						<!-- adding the 'full' class to an 'img' or 'a' tag causes it to fill the entire tile -->
-						<div>
-							<a href="${business.yelpUrl}" target='_blank'><img class="full" src="${business.picUrl}" alt="first" /></a>
-						</div>
-						<div>
-							<p>
-								<a href="${business.yelpUrl}" target='_blank'>${business.name}</a>
-							</p>
-							<img src="${business.ratingUrl}" alt="first" />
-						</div>
-					</div>
-					<c:choose>
-						<c:when test="${flipDelay == 2000}">
-							<c:set var="flipDelay" value="0" />
-							<c:set var="tileColor" value="" />
-						</c:when>
-						<c:otherwise>
+		<div data-role="content">
+			<div class="ui-grid-b">
+				    
+				<div class="ui-block-a">
+					<div>&nbsp;</div>
+				</div>
+				    
+				<div class="ui-block-b ui-responsive">
+					<div>
+						<div class="tiles red" style="text-align: center; position: relative; left: 10%;">
 							<c:set var="flipDelay" value="2000" />
 							<c:set var="tileColor" value="blue" />
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${count == 1}">
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
 							<fmt:parseNumber var="count" value="0" />
-						</c:when>
-						<c:otherwise>
-							<c:set var="count" value="${count + 1}" />
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
+							<c:forEach items="${businesses}" var="business">
+								<div class="live-tile ${tileColor}" data-mode="flip" data-initdelay="${flipDelay}" data-delay="4000">
+									<!-- adding the 'full' class to an 'img' or 'a' tag causes it to fill the entire tile -->
+									<div>
+										<a href="${business.yelpUrl}" target='_blank'><img class="full" src="${business.picUrl}" alt="first" /></a>
+									</div>
+									<div>
+										<p>
+											<a href="${business.yelpUrl}" target='_blank'>${business.name}</a>
+										</p>
+										<img src="${business.ratingUrl}" alt="first" />
+									</div>
+								</div>
+								<c:set var="rand"><%=java.lang.Math.round(java.lang.Math.random() * 2)%></c:set>
+								<c:choose>
+									<c:when test="${flipDelay == 2000}">
+										<c:set var="flipDelay" value="0" />
+										<c:set var="tileColor" value="" />
+									</c:when>
+									<c:when test="${rand mod 4 == 0}">
+										<c:set var="flipDelay" value="1250" />
+										<c:set var="tileColor" value="blue" />
+									</c:when>
+									<c:when test="${rand mod 4 == 1}">
+										<c:set var="flipDelay" value="1500" />
+										<c:set var="tileColor" value="green" />
+									</c:when>
+									<c:when test="${rand mod 4 == 2}">
+										<c:set var="flipDelay" value="1750" />
+										<c:set var="tileColor" value="red" />
+									</c:when>
+									<c:otherwise>
+										<c:set var="flipDelay" value="2000" />
+										<c:set var="tileColor" value="blue" />
+									</c:otherwise>
+								</c:choose>
+								<c:choose>
+									<c:when test="${count == 1}">
+										<br>
+										<br>
+										<br>
+										<br>
+										<br>
+										<br>
+										<br>
+										<br>
+										<br>
+										<fmt:parseNumber var="count" value="0" />
+									</c:when>
+									<c:otherwise>
+										<c:set var="count" value="${count + 1}" />
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</div>
+					</div>
+				</div>
+				<div class="ui-block-c">
+					<div>&nbsp;</div>
+				</div>
 			</div>
 			<script>
 				$(".live-tile").liveTile();

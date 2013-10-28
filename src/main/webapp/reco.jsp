@@ -116,7 +116,7 @@
                           </c:otherwise>
                         </c:choose>
                         <c:choose>
-                            <c:when test="${count == 2}">
+                            <c:when test="${count == 1}">
                                 <br><br><br><br><br><br><br><br><br>
                                 <fmt:parseNumber var="count" value="0" />
                             </c:when>

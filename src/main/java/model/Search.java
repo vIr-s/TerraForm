@@ -114,4 +114,14 @@ public class Search {
         Document document = reader.read(url);
         return document.selectNodes("/rss/channel/item");
     }
+
+    public static List<String> defaultCategories(){
+        List<String> categories = new ArrayList<String>();
+        categories.add("Coffee & Tea");
+        categories.add("Chocolatiers & Shops");
+        categories.add("Desserts");
+        categories.add("Juice Bars & Smoothies");
+        categories.add("Lounges");
+        return categories;
+    }
 }

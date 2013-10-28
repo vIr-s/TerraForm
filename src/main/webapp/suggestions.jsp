@@ -14,7 +14,7 @@
 <link href="./metrojs/MetroJs.css" type="text/css" rel="stylesheet">
 </head>
 
-<body>
+<body bgcolor="#000000">
 	<%
 		if (request.getAttribute("obj") == null) {
 			// response.sendRedirect("/");

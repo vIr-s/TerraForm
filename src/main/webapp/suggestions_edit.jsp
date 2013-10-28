@@ -10,9 +10,10 @@
 <body>
     <h1>Terraform</h1>
         <div class="tiles red">
-            <c:set var="flipDelay" value="500" />
+            <c:set var="flipDelay" value="2000" />
+            <c:set var="tileColor" value="blue" />
             <c:forEach items="${businesses}" var="business">
-                <div class="live-tile" data-mode="flip" data-initdelay="${flipDelay}">
+                <div class="live-tile ${tileColor}" data-mode="flip" data-initdelay="${flipDelay}" data-delay="4000">
                     <!-- adding the 'full' class to an 'img' or 'a' tag causes it to fill the entire tile -->
                     <div><a href="#"><img class="full" src="${business.picUrl}" alt="first" /></a>
                     </div>
@@ -21,11 +22,13 @@
                     </div>
                 </div>
                 <c:choose>
-                  <c:when test="${flipDelay == 500}">
+                  <c:when test="${flipDelay == 2000}">
                     <c:set var="flipDelay" value="0" />
+                    <c:set var="tileColor" value="" />
                   </c:when>
                   <c:otherwise>
-                    <c:set var="flipDelay" value="500" />
+                    <c:set var="flipDelay" value="2000" />
+                    <c:set var="tileColor" value="blue" />
                   </c:otherwise>
                 </c:choose>
             </c:forEach>

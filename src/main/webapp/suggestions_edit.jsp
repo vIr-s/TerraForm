@@ -3,13 +3,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <head>
     <title> Suggestions </title>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
     <script src="./metrojs/MetroJs.js" type="text/javascript"></script>
     <link href="./metrojs/MetroJs.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-    <h1>Terraform</h1>
         <div class="tiles red">
             <c:set var="flipDelay" value="2000" />
             <c:set var="tileColor" value="blue" />

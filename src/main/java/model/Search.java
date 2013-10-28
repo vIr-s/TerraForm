@@ -15,6 +15,7 @@ import org.scribe.model.Response;
 import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
+import terraform.common.Constants;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -58,7 +59,7 @@ public class Search {
             try {
                 imageUrl = businessJSON.getString("image_url");
             } catch (JSONException e) {
-                imageUrl = "blah";
+                imageUrl = Constants.URL.DEFAULT_IMAGE_URL;
             }
             Business business = new Business(businessJSON.getString("name"), imageUrl);
             businesses.add(business);

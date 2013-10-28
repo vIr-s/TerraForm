@@ -61,6 +61,7 @@
 							var c_value = escape("") + "; expires="
 									+ exdate.toUTCString();
 							document.cookie = "tfid" + "=" + c_value;
+							document.cookie = "city" + "=" + c_value;
 
 							location.replace("/");
 						});

@@ -54,6 +54,10 @@ public class MainServlet extends HttpServlet {
 				Cookie cookie = new Cookie(CookieName.ID, "");
 				cookie.setMaxAge(0);
 				resp.addCookie(cookie);
+				
+				Cookie cookie2 = new Cookie(CookieName.CITY, "");
+				cookie2.setMaxAge(0);
+				resp.addCookie(cookie2);
 
 				// resp.sendRedirect("/");
 				resp.sendRedirect(URLHelper.getRedirectURL(req, "/"));

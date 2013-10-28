@@ -121,12 +121,12 @@
 								<c:set var="rand"><%=java.lang.Math.round(java.lang.Math.random() * 2)%></c:set>
 								<c:set var="rand2"><%=java.lang.Math.round(java.lang.Math.random() * 2)%></c:set>
 								<c:choose>
-								<!-- 
+								<%-- 
 									<c:when test="${flipDelay >= 5500}">
 										<c:set var="flipDelay" value="1000" />
 										<c:set var="tileColor" value="" />
 									</c:when>
-								-->
+								--%>
 									<c:when test="${rand mod 4 == 1}">
 										<c:set var="flipDelay" value="${flipDelay + (1*500)}" />
 									</c:when>

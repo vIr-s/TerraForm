@@ -54,7 +54,10 @@ public class Search {
         List<Business> businesses = new ArrayList<Business>();
         for (String term : terms) {
             JSONObject json = termSearch(term, currentLat, currentLong);
-            JSONObject businessJSON = ((JSONArray) json.get("businesses")).getJSONObject(0);
+            JSONArray businessesJSON = ((JSONArray) json.get("businesses"));
+            if(businessesJSON.isEmpty())
+                continue;
+            JSONObject businessJSON = businessesJSON.getJSONObject(0);
             String imageUrl;
             try {
                 imageUrl = businessJSON.getString("image_url");
@@ -63,6 +66,8 @@ public class Search {
             }
             Business business = new Business(businessJSON.getString("name"), imageUrl, businessJSON.getString("mobile_url"), businessJSON.getString("rating_img_url"));
             businesses.add(business);
+            if(businesses.size() == 5)
+                break;
         }
         return businesses;
     }

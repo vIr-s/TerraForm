@@ -5,6 +5,7 @@ import model.Search;
 import org.dom4j.DocumentException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -26,9 +27,13 @@ public class SuggestionsServlet extends HttpServlet {
         ServletOutputStream out = resp.getOutputStream();
         String city = "atlanta";
         Search search = new Search(city);
-        List<Business> businesses = search.search("burritos");
+        List<String> fbSearchTerms = new ArrayList<String>();
+        fbSearchTerms.add("burritos");
+        List<Business> businesses = search.search(fbSearchTerms);
+        List<String> userReviewFavorites;
         try {
-            search.userReviewSearch();
+             userReviewFavorites = search.userReviewSearch();
+             businesses.addAll(search.search(userReviewFavorites));
         } catch (DocumentException e) {
             e.printStackTrace();
         }

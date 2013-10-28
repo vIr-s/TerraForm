@@ -22,8 +22,7 @@ public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String code = req.getParameter(ParamName.CODE);
 		if (code == null) {
@@ -45,6 +44,8 @@ public class LoginServlet extends HttpServlet {
 			TokenStore.addToken(id, userToken);
 			Cookie cookie = new Cookie(CookieName.ID, id);
 			resp.addCookie(cookie);
+
+			System.out.println(req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort());
 
 			resp.sendRedirect("main");
 		}

@@ -85,6 +85,7 @@ public class Search {
     }
 
     public List<String> userReviewFavorites() throws MalformedURLException, DocumentException {
+//        return userReviewFavorites("ujbLWpurrq1MQwMs");
         return userReviewFavorites("ujbLWpurrq1MQwMsn0n6wg");
     }
 

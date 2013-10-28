@@ -10,3 +10,4 @@ target/
 embeddedTomcatSample.iml
 out/
 .classpath
+start_server

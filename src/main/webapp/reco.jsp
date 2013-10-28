@@ -13,8 +13,8 @@
 
 <body>
 	<%
-		if (request.getAttribute("obj") == null) {
-			// response.sendRedirect("/");
+		if (request.getAttribute("businesses") == null) {
+			response.sendRedirect("/");
 		}
 	%>
 

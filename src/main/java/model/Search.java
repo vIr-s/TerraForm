@@ -61,7 +61,7 @@ public class Search {
             } catch (JSONException e) {
                 imageUrl = Constants.URL.DEFAULT_IMAGE_URL;
             }
-            Business business = new Business(businessJSON.getString("name"), imageUrl, businessJSON.getString("mobile_url"));
+            Business business = new Business(businessJSON.getString("name"), imageUrl, businessJSON.getString("mobile_url"), businessJSON.getString("rating_img_url"));
             businesses.add(business);
         }
         return businesses;

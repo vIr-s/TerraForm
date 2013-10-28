@@ -103,6 +103,7 @@
                             </div>
                             <div>
                                 <p><a href="${business.yelpUrl}" target='_blank'>${business.name}</a></p>
+                                <img src="${business.ratingUrl}" alt="first" />
                             </div>
                         </div>
                         <c:choose>

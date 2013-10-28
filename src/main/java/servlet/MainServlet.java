@@ -45,6 +45,8 @@ public class MainServlet extends HttpServlet {
 				List<String> searchTerms = FoodDigester.getInstance().getSearchTerms(userLikes);
 				req.setAttribute(RequestAttrName.SEARCH_TERM, searchTerms);
 				req.setAttribute(RequestAttrName.LOCATION, null); // TODO: Read from cookie
+				req.getRequestDispatcher("/suggestions").forward(req, resp);
+				return;
 			} else {
 				Cookie cookie = new Cookie(CookieName.ID, "");
 				cookie.setMaxAge(0);
@@ -56,6 +58,6 @@ public class MainServlet extends HttpServlet {
 			}
 		}
 		
-		req.getRequestDispatcher("/suggestions").forward(req, resp);
+		resp.sendRedirect(URLHelper.getRedirectURL(req, "/"));
 	}
 }

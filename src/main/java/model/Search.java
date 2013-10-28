@@ -79,11 +79,11 @@ public class Search {
     }
 
     public List<String> userReviewFavorites() throws MalformedURLException, DocumentException {
-        return userReviewSearch("ujbLWpurrq1MQwMsn0n6wg");
+        return userReviewFavorites("ujbLWpurrq1MQwMsn0n6wg");
     }
 
 
-    public List<String> userReviewSearch(String userId) throws MalformedURLException, DocumentException {
+    public List<String> userReviewFavorites(String userId) throws MalformedURLException, DocumentException {
         List<Element> reviews = getUserReviews(userId);
         Set<String> categories = new HashSet<String>();
         for (Element review : reviews) {

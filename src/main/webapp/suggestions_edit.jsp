@@ -7,8 +7,7 @@
     <link href="./metrojs/MetroJs.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-    <h1>Flip Mode Simple</h1>
-
+    <h1>Terraform</h1>
     <div class="tiles red">
         <div class="live-tile" data-mode="flip" data-initdelay="500">
             <!-- adding the 'full' class to an 'img' or 'a' tag causes it to fill the entire tile -->

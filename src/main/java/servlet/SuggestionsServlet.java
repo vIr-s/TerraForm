@@ -37,7 +37,7 @@ public class SuggestionsServlet extends HttpServlet {
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        out.write("hello heroku".getBytes());
+        out.write(businesses.get(0).getPicUrl().getBytes());
         out.flush();
         out.close();
     }

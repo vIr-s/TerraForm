@@ -99,10 +99,10 @@
                     <c:forEach items="${businesses}" var="business">
                         <div class="live-tile ${tileColor}" data-mode="flip" data-initdelay="${flipDelay}" data-delay="4000">
                             <!-- adding the 'full' class to an 'img' or 'a' tag causes it to fill the entire tile -->
-                            <div><a href="#"><img class="full" src="${business.picUrl}" alt="first" /></a>
+                            <div><a href="${business.yelpUrl}" target='_blank'><img class="full" src="${business.picUrl}" alt="first" /></a>
                             </div>
                             <div>
-                                <p>${business.name}</p>
+                                <p><a href="${business.yelpUrl}" target='_blank'>${business.name}</a></p>
                             </div>
                         </div>
                         <c:choose>

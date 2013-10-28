@@ -44,6 +44,8 @@ public class MainServlet extends HttpServlet {
 				System.out.println(FoodDigester.getInstance().getSearchTerms(
 						userLikes));
 
+// 				Final
+				
 				req.setAttribute("obj", "yep");
 			} else {
 				Cookie cookie = new Cookie(CookieName.ID, "");

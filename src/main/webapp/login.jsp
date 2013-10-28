@@ -1,9 +1,16 @@
+<!DOCTYPE HTML>
 <html>
-<head>
-<jsp:forward page="login.jsp"></jsp:forward>
 
+<head>
 <title>TerraForm</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+
 <style type="text/css">
+
 a.fbbtn {
 	background-image: url("images/active_404.png");
 	display: inline-block;
@@ -15,7 +22,9 @@ a.fbbtn:HOVER {
 	background-image: url("images/pressed_404.png");
 }
 </style>
+
 </head>
+
 <body>
 	<div id="fb-root"></div>
 	<script>
@@ -75,17 +84,13 @@ a.fbbtn:HOVER {
 		}
 	</script>
 
-	<!--
-  Below we include the Login Button social plugin. This button uses the JavaScript SDK to
-  present a graphical Login button that triggers the FB.login() function when clicked.
-
-  Learn more about options for the login button plugin:
-  /docs/reference/plugins/login/ -->
-
-	<!-- <fb:login-button show-faces="false" max-rows="1" autologoutlink="true"
-		size="large" onlogin="foo()"></fb:login-button> -->
-
-	<a id="IDfbBtn" class="fbbtn"></a>
-
+	<div data-role="page" data-theme='d' id="home_page">
+		<div data-role="header" data-theme='c'>
+			<h1>TerraForm</h1>
+		</div>
+		<div data-role="content" style="text-align: center;">
+			<a id="IDfbBtn" class="fbbtn"></a>
+		</div>
+	</div>
 </body>
 </html>

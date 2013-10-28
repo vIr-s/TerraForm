@@ -19,18 +19,12 @@
 		<!-- nativeDroid: Color Schemes -->
         <link rel="stylesheet" href="css/jquerymobile.nativedroid.color.blue.css" id='jQMnDColor' />
         
-        <!-- EventConnect -->
-        <link rel="stylesheet" href="css/eventconnect_test.css" />
-
 		<!-- jQuery / jQueryMobile Scripts -->
 		<script src="js/jquery.js"></script>
 		<script src="js/jquery.tmpl.js"></script>
 		<script src="js/jquery.url.js"></script>
         <script src="js/jquery.mobile.js"></script>
         <script type="js/nativedroid.script.js"></script>
-
-        <!-- Javascript -->
-        <script src="js/eventconnect_test.js"></script>
 
 <script>
 $(document).ready(function()

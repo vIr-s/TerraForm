@@ -49,7 +49,7 @@ public class SuggestionsServlet extends HttpServlet {
 
 		HttpSession session = req.getSession();
 		session.setAttribute("businesses", businesses);
-		getServletContext().getRequestDispatcher("/suggestions_edit.jsp").forward(req, resp);
+		getServletContext().getRequestDispatcher("/reco.jsp").forward(req, resp);
 		// resp.sendRedirect("/suggestions_edit.jsp");
 		// out.write(businesses.get(0).getPicUrl().getBytes());
 		// out.flush();

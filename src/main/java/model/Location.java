@@ -24,7 +24,7 @@ public class Location {
         locations.put("atlanta", new Location(33.777889, -84.408485));
         locations.put("new_york", new Location(40.748328, -73.985560));
         locations.put("san_francisco", new Location(37.774929, -122.419416));
-        locations.put("los_angels", new Location(34.052234, -118.243685));
+        locations.put("los_angeles", new Location(34.052234, -118.243685));
         locations.put("washington_dc", new Location(38.907231, -77.036464));
         locations.put("austin", new Location(30.267153, -97.743061));
         locations.put("seattle", new Location(47.606209, -122.332071));

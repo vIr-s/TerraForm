@@ -3,7 +3,8 @@ package terraform.common;
 public interface Constants {
 	public interface CookieName {
 		String ID = "tfid";
-	}
+        String CITY = "city";
+    }
 
 	public interface FB {
 		public interface ParamName {

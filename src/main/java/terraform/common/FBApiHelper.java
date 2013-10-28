@@ -4,9 +4,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.List;
 import java.util.Properties;
 
 import javax.net.ssl.HttpsURLConnection;
+
+import terraform.common.fbtypes.UserLike;
+
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
 
 public class FBApiHelper {
 	private static String _REDIRECT_URL;
@@ -16,8 +22,9 @@ public class FBApiHelper {
 	static {
 		try {
 			Properties prop = new Properties();
-			prop.load(FBApiHelper.class.getResourceAsStream("/config/fb.properties"));
-			
+			prop.load(FBApiHelper.class
+					.getResourceAsStream("/config/fb.properties"));
+
 			_REDIRECT_URL = prop.getProperty("REDIRECT_URL");
 			_APP_ID = prop.getProperty("APP_ID");
 			_APP_SECRET = prop.getProperty("APP_SECRET");
@@ -119,23 +126,10 @@ public class FBApiHelper {
 		return response;
 	}
 
-	public static String getUserLikes(String token) {
-		try {
-			URL url = new URL(
-					"https://graph.facebook.com/me/likes?fields=category,name&limit=500&method=GET&access_token="
-							+ token);
-
-			HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
-
-			HTTPSResponseHolder respHolder = getResponse(conn);
-			if (respHolder != null) {
-				System.out.println(respHolder.content);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return null;
+	public static List<UserLike> getUserLikes(String token) {
+		FacebookClient facebookClient = new DefaultFacebookClient(token);
+		String query = "SELECT name,type FROM page WHERE page_id IN (SELECT page_id FROM page_fan WHERE uid=me() )";
+		return facebookClient.executeFqlQuery(query, UserLike.class);
 	}
 
 	private static class HTTPSResponseHolder {

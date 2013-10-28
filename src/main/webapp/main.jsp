@@ -3,6 +3,13 @@
 <title>TerraForm</title>
 </head>
 <body>
+
+	<%
+		if (request.getAttribute("obj") == null) {
+			response.sendRedirect("/");
+		}
+	%>
+
 	<div id="fb-root"></div>
 	<script>
 		var xmlhttp;
@@ -35,11 +42,14 @@
 								location.replace('/');
 							}
 						});
-						
-						FB.Event.subscribe('auth.logout', function(
-								response) {
-								console.log(response);
-								location.replace("/");
+
+						FB.Event.subscribe('auth.logout', function(response) {
+							var exdate=new Date();
+							exdate.setDate(exdate.getDate() - 100);
+							var c_value=escape("") + "; expires="+exdate.toUTCString();
+							document.cookie="tfid" + "=" + c_value;
+							
+							location.replace("/");
 						});
 					};
 

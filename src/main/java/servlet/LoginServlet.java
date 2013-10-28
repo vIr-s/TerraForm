@@ -1,21 +1,20 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import terraform.common.Constants.CookieName;
 import terraform.common.Constants.FB.ParamName;
 import terraform.common.FBApiHelper;
-
-import com.restfb.DefaultFacebookClient;
-import com.restfb.Facebook;
-import com.restfb.FacebookClient;
+import terraform.common.TokenStore;
 
 @WebServlet(name = "LoginServlet", urlPatterns = { "/login" })
 public class LoginServlet extends HttpServlet {
@@ -33,38 +32,21 @@ public class LoginServlet extends HttpServlet {
 			return;
 		}
 
-		ServletOutputStream out = resp.getOutputStream();
 		String userToken = FBApiHelper.getUserToken(code);
 
 		if (userToken.equalsIgnoreCase("null")) {
+			ServletOutputStream out = resp.getOutputStream();
 			out.write("Error during authorization".getBytes());
 			out.flush();
 			out.close();
 		} else {
-			// FBApiHelper.getUserLikes(userToken);
+			String id = UUID.randomUUID().toString();
 
-			FacebookClient facebookClient = new DefaultFacebookClient(userToken);
+			TokenStore.addToken(id, userToken);
+			Cookie cookie = new Cookie(CookieName.ID, id);
+			resp.addCookie(cookie);
 
-			String query = "SELECT name,type FROM page WHERE page_id IN (SELECT page_id FROM page_fan WHERE uid=me() )";
-			List<UserLike> userLikes = facebookClient.executeFqlQuery(query,
-					UserLike.class);
-			System.out.println(userLikes);
-
-			resp.sendRedirect("main.jsp");
-			return;
-		}
-	}
-
-	public static class UserLike {
-		@Facebook
-		String type;
-
-		@Facebook
-		String name;
-
-		@Override
-		public String toString() {
-			return String.format("%s (%s)", name, type);
+			resp.sendRedirect("main");
 		}
 	}
 }

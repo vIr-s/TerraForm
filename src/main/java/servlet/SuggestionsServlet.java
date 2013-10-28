@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(
         name = "Suggestions",
@@ -29,17 +30,22 @@ public class SuggestionsServlet extends HttpServlet {
         Search search = new Search(city);
         List<String> fbSearchTerms = new ArrayList<String>();
         fbSearchTerms.add("burritos");
+        fbSearchTerms.add("pizza");
+        fbSearchTerms.add("pad thai");
         List<Business> businesses = search.search(fbSearchTerms);
-        List<String> userReviewFavorites;
-        try {
-             userReviewFavorites = search.userReviewFavorites();
-             businesses.addAll(search.search(userReviewFavorites));
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }
-        out.write(businesses.get(0).getPicUrl().getBytes());
-        out.flush();
-        out.close();
-    }
+//        List<String> userReviewFavorites;
+//        try {
+//             userReviewFavorites = search.userReviewFavorites();
+//             businesses.addAll(search.search(userReviewFavorites));
+//        } catch (DocumentException e) {
+//            e.printStackTrace();
+//        }
 
+        HttpSession session = req.getSession();
+        session.setAttribute("businesses", businesses);
+        resp.sendRedirect("/suggestions_edit.jsp");
+//        out.write(businesses.get(0).getPicUrl().getBytes());
+//        out.flush();
+//        out.close();
+    }
 }

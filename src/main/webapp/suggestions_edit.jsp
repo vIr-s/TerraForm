@@ -1,4 +1,5 @@
 <html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
     <title> Suggestions </title>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -8,26 +9,27 @@
 </head>
 <body>
     <h1>Terraform</h1>
-    <div class="tiles red">
-        <div class="live-tile" data-mode="flip" data-initdelay="500">
-            <!-- adding the 'full' class to an 'img' or 'a' tag causes it to fill the entire tile -->
-            <div> <a href="#"><img class="full" src="http://s3-media2.ak.yelpcdn.com/bphoto/LyxRzNho2KYVgOVlGwOlQQ/ms.jpg" alt="first" /></a>
-
-            </div>
-            <div>
-                <p>Taqueria Olgys</p>
-            </div>
+        <div class="tiles red">
+            <c:set var="flipDelay" value="500" />
+            <c:forEach items="${businesses}" var="business">
+                <div class="live-tile" data-mode="flip" data-initdelay="${flipDelay}">
+                    <!-- adding the 'full' class to an 'img' or 'a' tag causes it to fill the entire tile -->
+                    <div><a href="#"><img class="full" src="${business.picUrl}" alt="first" /></a>
+                    </div>
+                    <div>
+                        <p>${business.name}</p>
+                    </div>
+                </div>
+                <c:choose>
+                  <c:when test="${flipDelay == 500}">
+                    <c:set var="flipDelay" value="0" />
+                  </c:when>
+                  <c:otherwise>
+                    <c:set var="flipDelay" value="500" />
+                  </c:otherwise>
+                </c:choose>
+            </c:forEach>
         </div>
-        <div class="live-tile blue" data-mode="flip">
-            <!-- adding the 'full' class to an 'img' or 'a' tag causes it to fill the entire tile -->
-            <div> <a href="#"><img class="full" src="http://s3-media4.ak.yelpcdn.com/bphoto/ZKIzftdm2UyEvesX0_OS_Q/ms.jpg" alt="first" /></a>
-
-            </div>
-            <div>
-                <p>Cactus Flower Cafe</p>
-            </div>
-        </div>
-    </div>
     <script>
         $(".live-tile").liveTile();
     </script>

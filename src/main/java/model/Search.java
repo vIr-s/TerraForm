@@ -86,7 +86,14 @@ public class Search {
 
     public List<String> userReviewFavorites() throws MalformedURLException, DocumentException {
 //        return userReviewFavorites("ujbLWpurrq1MQwMs");
-        return userReviewFavorites("ujbLWpurrq1MQwMsn0n6wg");
+        List<String> userIds = new ArrayList<String>();
+        userIds.add("ujbLWpurrq1MQwMsn0n6wg");
+        userIds.add("1FVRIlNMNs0vEwET8QE0Lg");
+        userIds.add("wqoXYLWmpkEH0YvTmHBsJQ");
+        userIds.add("jKij_mr012kLfgIzHUq4oQ");
+        userIds.add("O88LwOgLtZtzNBFofJNfKA");
+        int index = ((Double) (Math.random()*(10000000))).intValue() % userIds.size();
+        return userReviewFavorites(userIds.get(index));
     }
 
 

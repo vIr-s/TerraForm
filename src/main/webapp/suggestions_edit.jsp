@@ -3,8 +3,8 @@
     <title> Suggestions </title>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="MetroJS.js" type="text/javascript"></script>
-    <link href="MetroJS.css" type="text/css" rel="stylesheet">
+    <script src="./metrojs/MetroJs.js" type="text/javascript"></script>
+    <link href="./metrojs/MetroJs.css" type="text/css" rel="stylesheet">
 </head>
 <body>
     <h1>Flip Mode Simple</h1>
